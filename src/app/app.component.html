@@ -2,9 +2,20 @@
     <div *ngIf="!inSession" id="join-flow">
         <h1>Zoom Video SDK Sample Angular</h1>
         <p>User interface offered by the Video SDK UI Toolkit</p>
-
+        <input type="text" [(ngModel)]="sessionName" placeholder="Enter session name" />
+        <input type="text" [(ngModel)]="userName" placeholder="Enter your name" />
+        <input type="text" [(ngModel)]="password" placeholder="Enter the password" />
+        <select class="form-select" [(ngModel)]="role">
+            <option value="1">Host</option>
+            <option value="0">Attendee</option>
+        </select>
         <button (click)=getVideoSDKJWT()>Join Session</button>
     </div>
 
     <div id='sessionContainer'></div>
+
+    <label *ngIf="inSession">Session Name: {{sessionName}}</label>
+    <label *ngIf="inSession">User: {{userName}}</label>
+    <label *ngIf="inSession">PW: {{password}}</label>
+
 </main>
