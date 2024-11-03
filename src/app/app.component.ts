@@ -4,6 +4,11 @@ import { DOCUMENT } from '@angular/common';
 import { FormBuilder } from '@angular/forms';
 
 import uitoolkit from "@zoom/videosdk-ui-toolkit";
+import ZoomVideo from '@zoom/videosdk'
+
+const client = ZoomVideo.createClient();
+client.init('en-US', `CDN`);
+const cloudRecording = client.getRecordingClient();
 
 @Component({
   selector: 'app-root',
@@ -24,40 +29,41 @@ export class AppComponent {
   userName: string = '';
   password: string = '';
   role: number = 0;
-  config: any ;
-  
+  config: any;
+
 
   ngOnInit() {
-    
+
   }
 
   getVideoSDKJWT() {
     this.sessionContainer = document.getElementById('sessionContainer')
 
     this.inSession = true
-    
+
     this.config = {
       videoSDKJWT: '',
       sessionName: this.sessionName,
       userName: this.userName,
       sessionPasscode: this.password,
+      cloud_recording_option: 1,
       features: ['preview', 'video', 'audio', 'settings', 'users', 'chat', 'share'],
-      options: { init: {}, audio: {}, video: {}, share: {}},
+      options: { init: {}, audio: {}, video: {}, share: {} },
       virtualBackground: {
-         allowVirtualBackground: true,
-         allowVirtualBackgroundUpload: true,
+        allowVirtualBackground: true,
+        allowVirtualBackgroundUpload: true,
         // virtualBackgrounds: ['https://images.unsplash.com/photo-1715490187538-30a365fa05bd?q=80&w=1945&auto=format&fit=crop']
       },
       role: this.role
     };
-    
-  
+
+
     this.httpClient.post(this.authEndpoint, {
-	    sessionName:  this.config.sessionName,
+      sessionName: this.config.sessionName,
       role: this.role,
-      cloud_recording_option: 0
+      cloud_recording_option: 1
     }).subscribe((data: any) => {
-      if(data.signature) {
+      if (data.signature) {
         console.log(data.signature)
         this.config.videoSDKJWT = data.signature
         this.joinSession()
@@ -69,7 +75,9 @@ export class AppComponent {
 
   joinSession() {
     uitoolkit.joinSession(this.sessionContainer, this.config)
-
+    uitoolkit.onSessionJoined(() => {
+      console.log(cloudRecording.getCloudRecordingStatus());
+    });
     uitoolkit.onSessionClosed(this.sessionClosed)
   }
 
