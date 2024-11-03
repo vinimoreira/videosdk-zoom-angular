@@ -17,7 +17,7 @@ export class AppComponent {
   }
 
   sessionContainer: any;
-  authEndpoint = 'https://slick-donkeys-tap.loca.lt'
+  authEndpoint = 'https://videosdk-auth.onrender.com'
   inSession: boolean = false
 
   sessionName: string = '';
