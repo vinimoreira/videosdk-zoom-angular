@@ -55,6 +55,7 @@ export class AppComponent {
     this.httpClient.post(this.authEndpoint, {
 	    sessionName:  this.config.sessionName,
       role: this.role,
+      cloud_recording_option: 0
     }).subscribe((data: any) => {
       if(data.signature) {
         console.log(data.signature)
