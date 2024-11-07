@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule, DOCUMENT } from '@angular/common';
 import { FormBuilder, FormsModule } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 import uitoolkit from "@zoom/videosdk-ui-toolkit";
 import ZoomVideo from '@zoom/videosdk'
@@ -17,8 +18,13 @@ const cloudRecording = client.getRecordingClient();
   templateUrl: './sample.component.html',
   styleUrl: './sample.component.css'
 })
+
 export class SampleComponent {
-  constructor(public httpClient: HttpClient, @Inject(DOCUMENT) document: any, private formBuilder: FormBuilder,) {
+  constructor(
+    public httpClient: HttpClient,
+    @Inject(DOCUMENT) document: any,
+    private formBuilder: FormBuilder,
+    private toastr: ToastrService) {
 
   }
 
@@ -34,6 +40,7 @@ export class SampleComponent {
 
 
   ngOnInit() {
+    
 
   }
 

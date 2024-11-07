@@ -4,7 +4,7 @@ import { TeleAtendimentoComponent } from './tele-atendimento/tele-atendimento.co
 import { SampleComponent } from './sample/sample.component';
 
 const routes: Routes = [
-  { path: 'tele-atendimento', component: TeleAtendimentoComponent },
+  { path: 'tele-atendimento/:sessionId/:password/:role/:name', component: TeleAtendimentoComponent },
   { path: 'sample', component: SampleComponent },
   // Add other routes here
 ];
