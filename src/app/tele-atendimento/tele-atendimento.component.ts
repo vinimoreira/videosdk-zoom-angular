@@ -82,7 +82,7 @@ export class TeleAtendimentoComponent implements OnInit {
 
   getVideoSDKJWT(): void {
     this.sessionContainer = this.document.getElementById('sessionContainer');
-    
+
     if (!this.sessionContainer) {
       this.toastr.error("Não foi possível encontrar o Elemento", "Tele Atendimento");
       return;
@@ -96,11 +96,12 @@ export class TeleAtendimentoComponent implements OnInit {
       userName: this.name,
       sessionPasscode: this.password,
       cloud_recording_option: 1,
-      features: ['preview', 'video', 'audio', 'settings', 'users', 'chat', 'share'],
-      options: { init: {}, audio: {}, video: {}, share: {} },
-      virtualBackground: {
-        allowVirtualBackground: false,
-        allowVirtualBackgroundUpload: false,
+      features: ['video', 'audio'],
+      options: {
+        init: {},
+        share: {},
+        audio: { startVideo: true }, // Automatically start audio
+        video: { startAudio: true }, // Automatically start video
       },
       role: this.role
     };
@@ -126,6 +127,10 @@ export class TeleAtendimentoComponent implements OnInit {
   joinSession(): void {
     uitoolkit.joinSession(this.sessionContainer, this.config);
     uitoolkit.onSessionJoined(() => {
+      setTimeout(() => {
+        const startVideoButton = this.document.querySelector('[aria-label="Start Video"]');
+        this.renderer.selectRootElement(startVideoButton).click();
+      }, 3000);
       console.log(cloudRecording.getCloudRecordingStatus());
     });
     uitoolkit.onSessionClosed(this.sessionClosed);
