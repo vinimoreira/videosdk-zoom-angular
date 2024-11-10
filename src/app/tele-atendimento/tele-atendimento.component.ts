@@ -129,6 +129,7 @@ export class TeleAtendimentoComponent implements OnInit {
     uitoolkit.onSessionJoined(() => {
       setTimeout(() => {
         const startVideoButton = this.document.querySelector('[aria-label="Start Video"]');
+        console.log(client.getSessionInfo())
         this.renderer.selectRootElement(startVideoButton).click();
       }, 3000);
       console.log(cloudRecording.getCloudRecordingStatus());
