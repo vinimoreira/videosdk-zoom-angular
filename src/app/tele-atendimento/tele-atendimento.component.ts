@@ -7,6 +7,7 @@ import uitoolkit from "@zoom/videosdk-ui-toolkit";
 import ZoomVideo from '@zoom/videosdk';
 import { ToastrService } from 'ngx-toastr';
 import { TeleAtendimentoService } from '../services/tele-atendimento.service';
+import { environment } from 'src/environments/environment';
 
 const client = ZoomVideo.createClient();
 client.init('en-US', 'CDN');
@@ -22,7 +23,7 @@ const cloudRecording = client.getRecordingClient();
 export class TeleAtendimentoComponent implements OnInit {
 
   sessionContainer: HTMLElement | null = null;
-  baseUrl = 'http://localhost:4000';
+  baseUrl = environment.baseUrl;
   inSession = false;
 
   sessionId: string | null = null;

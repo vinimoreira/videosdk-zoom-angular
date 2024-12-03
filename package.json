@@ -1,10 +1,10 @@
 {
-  "name": "videosdk-ui-toolkit-angular-sample",
-  "version": "1.12.1-1",
-  "author": "Zoom Video Communications, Inc.",
+  "name": "eatende-tele-atendimento",
+  "version": "1.0.0",
+  "author": "Apliacação de tele atendimento do e-Atende",
   "contributors": [
     {
-      "name": "Tommy Gaessler"
+      "name": "Vinicius Moreira"
     }
   ],
   "scripts": {

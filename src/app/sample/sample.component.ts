@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import uitoolkit from "@zoom/videosdk-ui-toolkit";
 import ZoomVideo from '@zoom/videosdk'
+import { environment } from 'src/environments/environment';
 
 const client = ZoomVideo.createClient();
 client.init('en-US', `CDN`);
@@ -21,16 +22,14 @@ const cloudRecording = client.getRecordingClient();
 
 export class SampleComponent {
   constructor(
-    public httpClient: HttpClient,
-    @Inject(DOCUMENT) document: any,
-    private formBuilder: FormBuilder,
-    private toastr: ToastrService) {
+    public httpClient: HttpClient
+    ) {
 
   }
 
   sessionContainer: any;
-  authEndpoint = 'http://localhost:4000/tele-atendimento/auth'
-  inSession: boolean = false
+  authEndpoint = environment.authEndpointUrl;
+  inSession: boolean = false;
 
   sessionName: string = '';
   userName: string = '';
