@@ -63,14 +63,15 @@ export class TeleAtendimentoComponent implements OnInit {
       return;
     }
 
-    this.teleAtendimentoService.get(this.sessionId, this.password)
-      .subscribe({
-        next: data => this.validarDadosAtendimento(data),
-        error: error => {
-          this.toastr.error("Erro ao buscar dados do Tele Atendimento", "Tele Atendimento");
-          console.error('Erro ao buscar dados do Tele Atendimento:', error);
-        }
-      });
+    this.getVideoSDKJWT();
+    // this.teleAtendimentoService.get(this.sessionId, this.password)
+    //   .subscribe({
+    //     next: data => this.validarDadosAtendimento(data),
+    //     error: error => {
+    //       this.toastr.error("Erro ao buscar dados do Tele Atendimento", "Tele Atendimento");
+    //       console.error('Erro ao buscar dados do Tele Atendimento:', error);
+    //     }
+    //   });
   }
 
   validarDadosAtendimento(atendimento: any): void {
