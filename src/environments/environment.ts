@@ -1,4 +1,4 @@
 export const environment = {
-    authEndpointUrl: 'http://telemedicina.icconsulting.com.br/api-eatende-al/tele-atendimento/auth',
-    baseUrl: 'http://telemedicina.icconsulting.com.br/api-eatende-al'
+    authEndpointUrl: 'http://saude.icconsulting.com.br/api-eatende/tele-atendimento/auth',
+    baseUrl: 'http://saude.icconsulting.com.br/api-eatende'
 };
